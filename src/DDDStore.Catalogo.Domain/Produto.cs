@@ -1,9 +1,11 @@
 ﻿using DDDStore.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DDDStore.Catalogo.Domain
 {
@@ -39,6 +41,8 @@ namespace DDDStore.Catalogo.Domain
             CategoriaId = categoriaID;
             Imagem = imagem;
             DataCadastro = dataCadastro;
+
+            Validar();
         }
 
         public void Ativar() => Ativo = true;
@@ -52,12 +56,14 @@ namespace DDDStore.Catalogo.Domain
 
         public void AlterarDescricao(string descricao)
         {
+            ValidacoesAfirmativas.ValidarSeVazio(Descricao, "O Campo Descrição não pode estar vazio");
             Descricao = descricao;
         }
 
         public void DebitarEstoque(int quantidade)
         {
             if (quantidade < 0) quantidade *= -1;
+            if (!PossuiEstoque(quantidade)) throw new DomainException("Estoque Insuficiente");
             QuantidadeEstoque -= quantidade;
         }
         public void ReporEstoque(int quantidade)
@@ -72,28 +78,11 @@ namespace DDDStore.Catalogo.Domain
 
         public void Validar()
         {
-
-        }
-
-    }
-
-    public class Categoria : Entity
-    {
-        public string Nome { get; private set; }
-
-
-
-        public int Codigo { get; private set; }
-
-        public Categoria(string nome, int codigo)
-        {
-            Nome = nome;
-            Codigo = codigo;
-        }
-
-        public override string ToString()
-        {
-            return $"{Nome} - {Codigo}";
+            ValidacoesAfirmativas.ValidarSeVazio(Nome, "O Campo Nome não pode estar vazio");
+            ValidacoesAfirmativas.ValidarSeVazio(Descricao, "O Campo Descrição não pode estar vazio");
+            ValidacoesAfirmativas.ValidarSeDiferente(CategoriaId, Guid.Empty, "O Campo CategoriaId do Produto deve ser preenchido");
+            ValidacoesAfirmativas.ValidarSeMenorIgualMinimo(Valor, 0, "O Campo Valor não pode ser Zero ou Menor");
+            ValidacoesAfirmativas.ValidarSeVazio(Imagem, "O Campo Imagem Deve ser Preenchido");
         }
 
     }

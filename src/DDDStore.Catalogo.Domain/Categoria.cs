@@ -2,6 +2,7 @@
 
 namespace DDDStore.Catalogo.Domain
 {
+    //Entidades Unicas
     public class Categoria : Entity
     {
         public string Nome { get; private set; }

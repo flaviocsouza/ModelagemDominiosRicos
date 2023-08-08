@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace DDDStore.Core.DomainObjects
 {
+    //Assertion Concerns
+    //Classe de validação com diversas validaçoes genericas
+    //Ao Infringir uma validação retorna uma Exception (neste caso DomainException)
+
+    //Observação Pessoal, talvez Validaçoes seja uma tradução melhor(?)
     public class ValidacoesAfirmativas
     {
         public static void ValidarSeIgual(object obj1, object obj2, string mensagem) 
@@ -17,7 +22,6 @@ namespace DDDStore.Core.DomainObjects
             }
         
         }
-
         public static void ValidarSeDiferente(object obj1, object obj2, string mensagem)
         {
             if (obj1.Equals(obj2))
@@ -26,7 +30,6 @@ namespace DDDStore.Core.DomainObjects
             }
 
         }
-
         public static void ValidarCaracteres(string valor, int maximo, string mensagem) 
         {
             var length = valor.Trim().Length;

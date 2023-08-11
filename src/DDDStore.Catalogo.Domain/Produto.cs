@@ -81,11 +81,11 @@ namespace DDDStore.Catalogo.Domain
 
         public void Validar()
         {
-            ValidacoesAfirmativas.ValidarSeVazio(Nome, "O Campo Nome não pode estar vazio");
-            ValidacoesAfirmativas.ValidarSeVazio(Descricao, "O Campo Descrição não pode estar vazio");
-            ValidacoesAfirmativas.ValidarSeDiferente(CategoriaId, Guid.Empty, "O Campo CategoriaId do Produto deve ser preenchido");
-            ValidacoesAfirmativas.ValidarSeMenorIgualMinimo(Valor, 0, "O Campo Valor não pode ser Zero ou Menor");
-            ValidacoesAfirmativas.ValidarSeVazio(Imagem, "O Campo Imagem Deve ser Preenchido");
+            ValidacoesAfirmativas.ValidarSeVazio(Nome, "O campo Nome do produto não pode estar vazio");
+            ValidacoesAfirmativas.ValidarSeVazio(Descricao, "O campo Descricao do produto não pode estar vazio");
+            ValidacoesAfirmativas.ValidarSeIgual(CategoriaId, Guid.Empty, "O campo CategoriaId do produto não pode estar vazio");
+            ValidacoesAfirmativas.ValidarSeMenorQue(Valor, 1, "O campo Valor do produto não pode se menor igual a 0");            
+            ValidacoesAfirmativas.ValidarSeVazio(Imagem, "O campo Imagem do produto n�o pode estar vazio");
         }
 
     }

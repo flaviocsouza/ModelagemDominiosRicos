@@ -6,10 +6,9 @@ namespace DDDStore.Catalogo.Domain
     public class Categoria : Entity
     {
         public string Nome { get; private set; }
-
-
-
         public int Codigo { get; private set; }
+
+        public ICollection<Produto> Produtos { get; private set; }
 
         public Categoria(string nome, int codigo)
         {

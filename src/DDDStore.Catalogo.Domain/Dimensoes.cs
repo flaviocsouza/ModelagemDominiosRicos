@@ -20,9 +20,9 @@ namespace DDDStore.Catalogo.Domain
             decimal profundidade
         )
         {
-            ValidacoesAfirmativas.ValidarSeMenorIgualMinimo(altura, 1, "o Campo Altura Deve Ser Maior que Um Milimetro");
-            ValidacoesAfirmativas.ValidarSeMenorIgualMinimo(largura, 1, "o Campo Largura Deve Ser Maior que Um Milimetro");
-            ValidacoesAfirmativas.ValidarSeMenorIgualMinimo(profundidade, 1, "o Campo Profundidade Deve Ser Maior que Um Milimetro");
+            ValidacoesAfirmativas.ValidarSeMenorQue(altura, 1, "o Campo Altura Deve Ser Maior que Um Milimetro");
+            ValidacoesAfirmativas.ValidarSeMenorQue(largura, 1, "o Campo Largura Deve Ser Maior que Um Milimetro");
+            ValidacoesAfirmativas.ValidarSeMenorQue(profundidade, 1, "o Campo Profundidade Deve Ser Maior que Um Milimetro");
 
             Altura = altura;
             Largura = largura;
